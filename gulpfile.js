@@ -17,6 +17,8 @@ const del = require('del');
 const plumber = require("gulp-plumber");
 const notifier = require('gulp-notifier');
 const rev = require('gulp-rev');
+const rewrite = require('gulp-rev-rewrite');
+const { readFileSync } = require('fs');
 
 filesPath = {
   sass: './src/sass/**/*.scss',
@@ -92,6 +94,15 @@ function imagesTask() {
     }))
     .pipe(dest('.'))
 }
+
+// Rewrite reference
+
+function revRewrite() {
+  const manifest = readFileSync('./rev-manifest.json');
+
+  return src('./dist/**/*.{html,css}')
+    .pipe(rewrite({ manifest }))
+    .pipe(dest('./dist'))
 }
 
 // Watch task with BrowserSync
@@ -101,7 +112,7 @@ function serve() {
     server: './dist',
     browser: 'google chrome'
   })
-  watch([filesPath.pug, filesPath.sass, filesPath.js, filesPath.images], parallel(pugTask, sassTask, jsTask, imagesTask)).on('change', browserSync.reload)
+  watch([filesPath.pug, filesPath.sass, filesPath.js, filesPath.images], series(clean, pugTask, sassTask, jsTask, imagesTask, revRewrite)).on('change', browserSync.reload)
 }
 
 // Clear cache
@@ -134,10 +145,11 @@ exports.serve = serve;
 exports.clearCache = clearCache;
 exports.zipTask = zipTask;
 exports.clean = clean;
+exports.revRewrite = revRewrite;
 
 // Gulp build command
-exports.build = parallel(pugTask, sassTask, jsTask, imagesTask);
+exports.build = series(clean, pugTask, sassTask, jsTask, imagesTask, revRewrite);
 
 // Gulp default command
 
-exports.default = series(clean, exports.build, serve);
+exports.default = series(exports.build, serve);
