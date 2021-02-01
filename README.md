@@ -23,3 +23,5 @@ git init
 ```
 npm install
 ```
+
+- デバッグ時は、`google chrome`の検証ツールの`Network`で、`Disable cache`にチェックを入れておく事

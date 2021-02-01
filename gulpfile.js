@@ -106,6 +106,7 @@ function revRewrite() {
 }
 
 // Watch task with BrowserSync
+// デバッグ時は、`google chrome`の検証ツールの`Network`で、`Disable cache`にチェックを入れておく事
 
 function serve() {
   browserSync.init({
