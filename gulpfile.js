@@ -9,6 +9,7 @@ const concat = require('gulp-concat');
 const imagemin = require('gulp-imagemin');
 const cache = require('gulp-cache');
 const pug = require('gulp-pug');
+const prettify = require('gulp-prettify');
 const htmlmin = require('gulp-htmlmin');
 const autoprefixer = require('gulp-autoprefixer');
 const babel = require('gulp-babel');
@@ -36,6 +37,10 @@ function pugTask() {
   return src([filesPath.pug, '!./src/templates/includes/*.pug', '!./src/templates/extends/*.pug'])
     .pipe(plumber({errorHandler: notifier.error}))
     .pipe(pug())
+    .pipe(gulpif(!isProd, prettify({
+      indent_size: 2,
+      indent_with_tabs: true
+    })))
     .pipe(gulpif(isProd, htmlmin({
       collapseWhitespace: true
     })))
