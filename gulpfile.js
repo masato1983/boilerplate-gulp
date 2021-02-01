@@ -53,6 +53,10 @@ function sassTask() {
       }}))
     .pipe(rev())
     .pipe(dest('./dist/css'))
+    .pipe(rev.manifest({
+      merge: true
+    }))
+    .pipe(dest('.'))
 }
 
 // Javascript
@@ -70,6 +74,10 @@ function jsTask() {
     }))
     .pipe(rev())
     .pipe(dest('./dist/js'))
+    .pipe(rev.manifest({
+      merge: true
+    }))
+    .pipe(dest('.'))
 }
 
 // Image Optimization
@@ -79,6 +87,11 @@ function imagesTask() {
     .pipe(cache(imagemin()))
     .pipe(rev())
     .pipe(dest('./dist/img/'))
+    .pipe(rev.manifest({
+      merge: true
+    }))
+    .pipe(dest('.'))
+}
 }
 
 // Watch task with BrowserSync
@@ -108,7 +121,7 @@ function zipTask() {
 // Clean "dist" folder
 
 function clean() {
-  return del(['./dist/**/*'])
+  return del(['./dist/**/*', 'rev-manifest.json'])
 }
 
 // Gulp individual tasks
