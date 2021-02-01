@@ -16,6 +16,7 @@ const zip = require('gulp-zip');
 const del = require('del');
 const plumber = require("gulp-plumber");
 const notifier = require('gulp-notifier');
+const rev = require('gulp-rev');
 
 filesPath = {
   sass: './src/sass/**/*.scss',
@@ -50,6 +51,7 @@ function sassTask() {
       if (!path.extname.endsWith('.map')) {
         path.basename += '.min'
       }}))
+    .pipe(rev())
     .pipe(dest('./dist/css'))
 }
 
@@ -58,7 +60,7 @@ function sassTask() {
 function jsTask() {
   return src(['./src/js/project.js', './src/js/alert.js'])
     .pipe(plumber({errorHandler: notifier.error}))
-    .pipe(concat('project.js'))
+    .pipe(concat({path: 'project.js', cwd: ''}))
     .pipe(babel({
       presets: ['@babel/env']
     }))
@@ -66,6 +68,7 @@ function jsTask() {
     .pipe(rename({
       suffix: '.min'
     }))
+    .pipe(rev())
     .pipe(dest('./dist/js'))
 }
 
@@ -74,6 +77,7 @@ function jsTask() {
 function imagesTask() {
   return src(filesPath.images)
     .pipe(cache(imagemin()))
+    .pipe(rev())
     .pipe(dest('./dist/img/'))
 }
 
