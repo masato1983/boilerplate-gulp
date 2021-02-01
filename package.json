@@ -4,6 +4,8 @@
   "description": "boilerplate-gulp",
   "main": "gulpfile.js",
   "scripts": {
+    "dev": "gulp",
+    "build": "cross-env NODE_ENV=production gulp",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -21,6 +23,7 @@
     "@babel/core": "^7.12.10",
     "@babel/preset-env": "^7.12.11",
     "browser-sync": "^2.26.14",
+    "cross-env": "^7.0.3",
     "del": "^6.0.0",
     "gulp": "^4.0.2",
     "gulp-autoprefixer": "^7.0.1",
@@ -29,6 +32,7 @@
     "gulp-clean-css": "^4.3.0",
     "gulp-concat": "^2.6.1",
     "gulp-htmlmin": "^5.0.1",
+    "gulp-if": "^3.0.0",
     "gulp-imagemin": "^7.1.0",
     "gulp-notifier": "^1.0.6",
     "gulp-plumber": "^1.2.1",
