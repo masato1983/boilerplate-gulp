@@ -55,6 +55,9 @@ function sassTask() {
     .pipe(gulpif(!isProd, sourcemaps.init()))
     .pipe(autoprefixer())
     .pipe(sass())
+    .pipe(gulpif(!isProd, cleancss({
+      format: 'beautify'
+    })))
     .pipe(gulpif(isProd, cleancss()))
     .pipe(gulpif(!isProd, sourcemaps.write('.')))
     .pipe(rename(function(path) {
