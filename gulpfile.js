@@ -19,6 +19,9 @@ const notifier = require('gulp-notifier');
 const rev = require('gulp-rev');
 const rewrite = require('gulp-rev-rewrite');
 const { readFileSync } = require('fs');
+const gulpif = require('gulp-if');
+const isProd = process.env.NODE_ENV === "production";
+
 
 filesPath = {
   sass: './src/sass/**/*.scss',
@@ -33,9 +36,9 @@ function pugTask() {
   return src([filesPath.pug, '!./src/templates/includes/*.pug', '!./src/templates/extends/*.pug'])
     .pipe(plumber({errorHandler: notifier.error}))
     .pipe(pug())
-    .pipe(htmlmin({
+    .pipe(gulpif(isProd, htmlmin({
       collapseWhitespace: true
-    }))
+    })))
     .pipe(dest('./dist'))
 }
 
@@ -44,11 +47,11 @@ function pugTask() {
 function sassTask() {
   return src([filesPath.sass, '!./src/sass/widget.scss'])
     .pipe(plumber({errorHandler: notifier.error}))
-    .pipe(sourcemaps.init())
+    .pipe(gulpif(!isProd, sourcemaps.init()))
     .pipe(autoprefixer())
     .pipe(sass())
-    .pipe(cleancss())
-    .pipe(sourcemaps.write('.'))
+    .pipe(gulpif(isProd, cleancss()))
+    .pipe(gulpif(!isProd, sourcemaps.write('.')))
     .pipe(rename(function(path) {
       if (!path.extname.endsWith('.map')) {
         path.basename += '.min'
@@ -70,7 +73,7 @@ function jsTask() {
     .pipe(babel({
       presets: ['@babel/env']
     }))
-    .pipe(uglify())
+    .pipe(gulpif(isProd, uglify()))
     .pipe(rename({
       suffix: '.min'
     }))
