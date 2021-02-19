@@ -17,6 +17,7 @@ const concat = require('gulp-concat');
 const imagemin = require('gulp-imagemin');
 const cache = require('gulp-cache');
 const pug = require('gulp-pug');
+const pugLinter = require('gulp-pug-linter');
 const prettify = require('gulp-prettify');
 const htmlmin = require('gulp-htmlmin');
 const babel = require('gulp-babel');
@@ -44,6 +45,7 @@ filesPath = {
 function pugTask() {
   return src([filesPath.pug, '!./src/templates/includes/*.pug', '!./src/templates/extends/*.pug'])
     .pipe(plumber({errorHandler: notifier.error}))
+    .pipe(pugLinter({ reporter: 'puglint-stylish' }))
     .pipe(pug())
     .pipe(gulpif(!isProd, prettify()))
     .pipe(gulpif(isProd, htmlmin({
