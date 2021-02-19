@@ -1,0 +1,10 @@
+# Browserslist's default browsers (> 0.5%, last 2 versions, Firefox ESR, not dead)
+defaults
+
+# Add Browsers config that we support
+IE >= 10
+Edge >= 13
+Safari >= 8
+iOS >= 8
+Samsung >= 4
+maintained node versions
