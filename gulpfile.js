@@ -5,6 +5,12 @@ const sourcemaps = require('gulp-sourcemaps');
 const browserSync = require('browser-sync');
 const stylelint = require('gulp-stylelint');
 const cleancss = require('gulp-clean-css');
+const postcss = require('gulp-postcss');
+const cssDeclarationSorter = require('css-declaration-sorter');
+const sortMediaQueries = require('postcss-sort-media-queries');
+const postcssColorHexAlpha = require('postcss-color-hex-alpha');
+const postcssColornamesToHex = require('postcss-colornames-to-hex');
+const autoprefixer = require('autoprefixer');
 const uglify = require('gulp-uglify');
 const rename = require('gulp-rename');
 const concat = require('gulp-concat');
@@ -13,7 +19,6 @@ const cache = require('gulp-cache');
 const pug = require('gulp-pug');
 const prettify = require('gulp-prettify');
 const htmlmin = require('gulp-htmlmin');
-const autoprefixer = require('gulp-autoprefixer');
 const babel = require('gulp-babel');
 const zip = require('gulp-zip');
 const del = require('del');
@@ -53,8 +58,16 @@ function sassTask() {
   return src([filesPath.sass, '!./src/sass/widget.scss'])
     .pipe(plumber({errorHandler: notifier.error}))
     .pipe(gulpif(!isProd, sourcemaps.init()))
-    .pipe(autoprefixer())
     .pipe(sass({outputStyle: 'expanded', fiber: Fiber}))
+    .pipe(postcss([
+      postcssColorHexAlpha(),
+      postcssColornamesToHex(), // stylelint for wordpress disallow color name
+      autoprefixer(),
+      cssDeclarationSorter({order: 'smacss'}),
+      sortMediaQueries({
+        sort: 'mobile-first'
+      })
+    ]))
     .pipe(stylelint({
       reporters: [
         {formatter: 'verbose', console: true}
