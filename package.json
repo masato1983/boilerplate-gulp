@@ -50,6 +50,7 @@
     "gulp-uglify": "^3.0.2",
     "gulp-zip": "^5.0.2",
     "node-sass": "^5.0.0",
+    "sass": "^1.32.8",
     "stylelint": "^13.10.0",
     "stylelint-config-property-sort-order-smacss": "^7.0.0",
     "stylelint-config-sass-guidelines": "^8.0.0",
