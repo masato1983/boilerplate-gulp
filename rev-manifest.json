@@ -1,11 +1,7 @@
 {
   "Rocket.svg": "Rocket-c48528b7c7.svg",
-  "common.min.css": "common-88471f16ec.min.css",
   "crocodile.jpg": "crocodile-a1347df54c.jpg",
   "flamingo.png": "flamingo-d04268ba63.png",
   "giraffe.jpg": "giraffe-882056eefb.jpg",
-  "lion.jpg": "lion-e847ffc6bd.jpg",
-  "main.min.css": "main-d122d3e2ce.min.css",
-  "pages/contact.min.css": "pages/contact-9ef0b4e9ff.min.css",
-  "project.min.js": "project-0a616f9e3f.min.js"
+  "lion.jpg": "lion-e847ffc6bd.jpg"
 }
