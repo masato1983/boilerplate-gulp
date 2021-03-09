@@ -69,10 +69,19 @@
     "puglint-stylish": "^1.1.0",
     "sass": "^1.32.8",
     "stylelint": "^13.10.0",
+    "stylelint-a11y": "^1.2.3",
     "stylelint-config-property-sort-order-smacss": "^7.0.0",
     "stylelint-config-sass-guidelines": "^8.0.0",
     "stylelint-config-standard": "^20.0.0",
+    "stylelint-csstree-validator": "^1.9.0",
+    "stylelint-declaration-block-no-ignored-properties": "^2.3.0",
+    "stylelint-declaration-strict-value": "^1.7.9",
+    "stylelint-find-new-rules": "^3.0.1",
+    "stylelint-high-performance-animation": "^1.5.2",
+    "stylelint-media-use-custom-media": "^2.0.0",
+    "stylelint-no-unsupported-browser-features": "^4.1.4",
     "stylelint-order": "^4.1.0",
-    "stylelint-scss": "^3.19.0"
+    "stylelint-scss": "^3.19.0",
+    "stylelint-selector-tag-no-without-class": "^2.0.3"
   }
 }
