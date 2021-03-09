@@ -2,7 +2,7 @@
 defaults
 
 # Add Browsers config that we support
-IE >= 10
+IE >= 11
 Edge >= 13
 Safari >= 8
 iOS >= 8
