@@ -6,6 +6,8 @@
   "scripts": {
     "dev": "gulp",
     "build": "cross-env NODE_ENV=production gulp",
+    "stylelint-find-rules-css": "stylelint-find-new-rules --no-u -d -i ./.stylelintrc.json",
+    "stylelint-find-rules-scss": "stylelint-find-new-rules --no-u -d -i ./src/sass/.stylelintrc.json",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
