@@ -64,6 +64,7 @@
     "postcss-sort-media-queries": "^3.4.3",
     "postcss-svgo": "^4.0.2",
     "prettier": "^2.2.1",
+    "prettierx": "^0.17.0",
     "pug-lint": "^2.6.0",
     "puglint-stylish": "^1.1.0",
     "sass": "^1.32.8",
