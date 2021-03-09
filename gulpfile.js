@@ -71,7 +71,7 @@ function pugTask() {
 // Sass
 
 function sassTask() {
-  return src([filesPath.sass, '!./src/sass/widget.scss'])
+  return src([filesPath.sass])
     .pipe(plumber({errorHandler: notifier.error}))
     .pipe(stylelint({
       configFile: './src/sass/.stylelintrc.json',
