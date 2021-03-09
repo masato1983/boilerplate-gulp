@@ -25,7 +25,7 @@
 	"disallowTagInterpolation": null,
 	"maximumNumberOfLines": null,
 	"requireClassLiteralsBeforeAttributes": true,
-	"requireClassLiteralsBeforeIdLiterals": true,
+	"requireClassLiteralsBeforeIdLiterals": null,
 	"requireIdLiteralsBeforeAttributes": true,
 	"requireLowerCaseAttributes": true,
 	"requireLowerCaseTags": true,
