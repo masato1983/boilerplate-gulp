@@ -10,6 +10,9 @@ const sortMediaQueries = require('postcss-sort-media-queries');
 const postcssColorHexAlpha = require('postcss-color-hex-alpha');
 const postcssColornamesToHex = require('postcss-colornames-to-hex');
 const autoprefixer = require('autoprefixer');
+const postcssinlinesvg = require('postcss-inline-svg');
+const postcsssvgo = require('postcss-svgo');
+const postcssflexbugsfixes = require('postcss-flexbugs-fixes');
 const uglify = require('gulp-uglify');
 const rename = require('gulp-rename');
 const concat = require('gulp-concat');
@@ -64,6 +67,9 @@ function sassTask() {
       postcssColorHexAlpha(),
       postcssColornamesToHex(), // stylelint for wordpress disallow color name
       autoprefixer(),
+      postcssinlinesvg(),
+      postcsssvgo(),
+      postcssflexbugsfixes(),
       sortMediaQueries({
         sort: 'mobile-first'
       })
