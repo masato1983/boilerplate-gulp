@@ -6,7 +6,6 @@ const browserSync = require('browser-sync');
 const stylelint = require('gulp-stylelint');
 const cleancss = require('gulp-clean-css');
 const postcss = require('gulp-postcss');
-const cssDeclarationSorter = require('css-declaration-sorter');
 const sortMediaQueries = require('postcss-sort-media-queries');
 const postcssColorHexAlpha = require('postcss-color-hex-alpha');
 const postcssColornamesToHex = require('postcss-colornames-to-hex');
@@ -65,7 +64,6 @@ function sassTask() {
       postcssColorHexAlpha(),
       postcssColornamesToHex(), // stylelint for wordpress disallow color name
       autoprefixer(),
-      cssDeclarationSorter({order: 'smacss'}),
       sortMediaQueries({
         sort: 'mobile-first'
       })
