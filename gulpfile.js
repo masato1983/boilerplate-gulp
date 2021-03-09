@@ -21,6 +21,7 @@ const cache = require('gulp-cache');
 const pug = require('gulp-pug');
 const pugLinter = require('gulp-pug-linter');
 const prettify = require('gulp-prettify');
+const prettier = require('gulp-prettier');
 const htmlmin = require('gulp-htmlmin');
 const babel = require('gulp-babel');
 const zip = require('gulp-zip');
@@ -74,6 +75,7 @@ function sassTask() {
         sort: 'mobile-first'
       })
     ]))
+    .pipe(prettier()) // Resolved Quotes being removed around the value of an attribute selector without a dot character present, more info dart-sass issue #852
     .pipe(stylelint({
       reporters: [
         {formatter: 'verbose', console: true}
