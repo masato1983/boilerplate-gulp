@@ -51,7 +51,12 @@ function pugTask() {
     .pipe(plumber({errorHandler: notifier.error}))
     .pipe(pugLinter({ reporter: 'puglint-stylish' }))
     .pipe(pug())
-    .pipe(gulpif(!isProd, prettify()))
+    .pipe(gulpif(!isProd, prettify({
+      inline: ['br'],
+      unformatted: ['code', 'pre', 'em', 'strong', 'span'],
+      end_with_newline: true,
+      extra_liners: ['head', 'body', 'header', 'ul', 'footer', 'article', 'aside', '!--'],
+    })))
     .pipe(prettier())
     .pipe(linthtml({
       configFile: './.linthtmlrc.json'
