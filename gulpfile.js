@@ -22,6 +22,7 @@ const pug = require('gulp-pug');
 const pugLinter = require('gulp-pug-linter');
 const prettify = require('gulp-prettify');
 const prettier = require('gulp-prettier');
+const linthtml = require('@linthtml/gulp-linthtml');
 const htmlmin = require('gulp-htmlmin');
 const babel = require('gulp-babel');
 const zip = require('gulp-zip');
@@ -52,6 +53,10 @@ function pugTask() {
     .pipe(pug())
     .pipe(gulpif(!isProd, prettify()))
     .pipe(prettier())
+    .pipe(linthtml({
+      configFile: './.linthtmlrc.json'
+    }))
+    .pipe(linthtml.format())
     .pipe(gulpif(isProd, htmlmin({
       collapseWhitespace: true
     })))
