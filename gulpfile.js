@@ -63,6 +63,12 @@ function pugTask() {
 function sassTask() {
   return src([filesPath.sass, '!./src/sass/widget.scss'])
     .pipe(plumber({errorHandler: notifier.error}))
+    .pipe(stylelint({
+      configFile: './src/sass/.stylelintrc.json',
+      reporters: [
+        {formatter: 'verbose', console: true}
+      ],
+    }))
     .pipe(gulpif(!isProd, sourcemaps.init()))
     .pipe(sass({outputStyle: 'expanded', fiber: Fiber}))
     .pipe(postcss([
@@ -78,6 +84,7 @@ function sassTask() {
     ]))
     .pipe(prettier()) // Resolved Quotes being removed around the value of an attribute selector without a dot character present, more info dart-sass issue #852
     .pipe(stylelint({
+      configFile: '.stylelintrc.json',
       reporters: [
         {formatter: 'verbose', console: true}
       ],
