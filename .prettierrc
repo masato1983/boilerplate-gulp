@@ -1,0 +1,11 @@
+{
+  "printWidth": 320,
+  "proseWrap": "preserve",
+  "pugSingleQuote": true,
+  "pugAttributeSeparator": "none",
+  "pugSortAttributesBeginning": ["^href"],
+  "pugClosingBracketPosition": "new-line",
+  "pugSortAttributes": "as-is",
+  "pugWrapAttributesThreshold": -1,
+  "htmlVoidTags": true
+}
