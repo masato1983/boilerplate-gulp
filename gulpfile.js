@@ -51,6 +51,7 @@ function pugTask() {
     .pipe(pugLinter({ reporter: 'puglint-stylish' }))
     .pipe(pug())
     .pipe(gulpif(!isProd, prettify()))
+    .pipe(prettier())
     .pipe(gulpif(isProd, htmlmin({
       collapseWhitespace: true
     })))
